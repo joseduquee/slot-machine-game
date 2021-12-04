@@ -1,0 +1,111 @@
+/* cambio el modelo de caja a border box y hago un reset para tener los valores en default */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+main {
+  padding: 2rem;
+}
+
+.menuGame {
+  width: 500px;
+  margin: 0 auto;
+}
+
+.title {
+  text-align: center;
+  background-color: #008;
+  color: aliceblue;
+  padding: 15px;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.coinsInput {
+  font-weight: bolder;
+}
+
+.coinsIn {
+  background-color: #008;
+  border: none;
+  color: aliceblue;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.coinsIn:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.coinsIn:active {
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.coinsIn:disabled {
+  background-color: aliceblue;
+  color: black;
+  border: 2px solid #008;
+  cursor: not-allowed;
+  font-weight: bold;
+}
+
+.exitBtn {
+  background-color: #f44336;
+  border: none;
+  color: aliceblue;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 410px;
+}
+
+.currentCoins {
+  margin-top: 1rem;
+}
+
+.numCoins {
+  font-size: 2.5rem;
+}
+
+.images {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin: 0 auto;
+  width: 70%;
+}
+
+.carsGame {
+  margin-top: 2rem;
+  margin-right: 4px;
+  width: 15rem;
+  height: auto;
+  overflow-y: scroll;
+  padding: 2rem;
+  border: 2px #008 solid;
+}
+
+.cardLever {
+  margin-top: 2rem;
+  margin-left: 5px;
+  width: 15rem;
+  overflow-y: scroll;
+  cursor: pointer;
+}
+
+.moves {
+  margin: 50px auto;
+  width: 500px;
+}

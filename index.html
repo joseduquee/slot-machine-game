@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <header class="title">
+        Tragaperras
+    </header>
+    <main>
+        <div class='menuGame'>
+            <label for="coinsInput" class="coinsInput">Introduce monedas:</label>
+            <input type="number" min="1" id="coinsInput" name="coinsInput" min="0" placeholder="Monedas...">
+            <input type="submit" class="coinsIn" value="Introducir">
+            <p class="currentCoins">El número de monedas actual es de:</p>
+            <br/>
+            <h2 class="numCoins">0</h2>
+            <br/>
+            <input type="button" class="exitBtn" value="Salir">
+        </div>
+        <br/>
+        <div class="images">
+        </div>
+        <div class="moves">
+            <h2>Historial de movimientos:</h2>
+            <ul class="containerMoves">
+
+            </ul>
+        </div>
+    </main>
+    <script src="./assets/js/index.js"></script>
+    <script src="//unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</body>
+</html>
