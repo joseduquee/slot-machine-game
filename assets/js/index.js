@@ -11,7 +11,9 @@ const listImages = [
   "potato",
   "tomato",
 ];
+
 let lever;
+
 const imgCards = [];
 
 //Referencias HTML
@@ -37,23 +39,22 @@ const initialGame = () => {
   placeForGame.append(lever);
 };
 
-const earningsCoin = (coins) => {  
+const earningsCoin = (coins) => {
   let numCoins = parseInt(numCoinsElement.innerHTML);
-  let inputNum = parseInt(inputCoins.value)
+  // let inputNum = parseInt(inputCoins.value);
   numCoins += coins;
-  inputNum += coins;
+  // inputNum += coins;
   numCoinsElement.innerHTML = numCoins;
-  inputCoins.value = inputNum;
+  // inputCoins.value = inputNum;
 };
 
-const turnLeftCoin = () => {  
+const turnLeftCoin = () => {
   let numCoins = parseInt(numCoinsElement.innerHTML);
-  let inputNum = parseInt(inputCoins.value)
+  // let inputNum = parseInt(inputCoins.value);
   numCoins -= 1;
-  inputNum -= 1;
+  // inputNum -= 1;
   numCoinsElement.innerHTML = numCoins;
-  inputCoins.value = inputNum;
-
+  // inputCoins.value = inputNum;
 };
 
 const earningsConditions = (results) => {
@@ -93,7 +94,6 @@ const earningsConditions = (results) => {
 initialGame();
 //Eventos
 btnInCoins.onclick = () => {
-  
   if (!inputCoins.value || inputCoins.value <= 0) {
     swal("Valor incorrecto", "Debes introducir monedas", "error");
     inputCoins.value = "";
@@ -101,36 +101,41 @@ btnInCoins.onclick = () => {
     numCoinsElement.innerHTML = inputCoins.value;
     btnInCoins.disabled = true;
     inputCoins.disabled = true;
+    inputCoins.value = "";
     movementsHistorical("Has introducido monedas.");
   }
 };
 
 btnExit.onclick = () => {
-  const coinsWon = (numCoinsElement.innerHTML = inputCoins.value);
+  debugger;
+  const coinsWon = (numCoinsElement.innerHTML);
   swal(
     "Has salido del juego",
     `Has conseguido un total del ${coinsWon} monedas`,
     "success"
   );
+
+  // inputCoins.value = inputNum;
+  inputCoins.value = parseInt(numCoinsElement.innerHTML);
   numCoinsElement.innerHTML = 0;
-  inputCoins.value = "";
   btnInCoins.disabled = false;
   inputCoins.disabled = false;
+  movementsHistorical("Sacas todas las monedas.");
 };
 
 lever.onclick = () => {
+  
   const cardsToGetResult = [];
 
   lever.src = "./assets/img/palancaDOWN.png";
 
-  if (inputCoins.value == 1) {
-    btnInCoins.disabled = false;
-    inputCoins.disabled = false;
+  if (numCoinsElement.innerHTML <= 0) {
+    swal("Insuficientes monedas", "Por favor, introduce monedas", "error");
+    lever.src = "./assets/img/palancaUP.png";
+    return;
+  } else {
+    turnLeftCoin();
   }
-
-  inputCoins.value <= 0
-    ? swal("Insuficientes monedas", "Por favor, introduce monedas", "error")
-    : turnLeftCoin();
 
   for (let i = 0; i < 3; i++) {
     let num = Math.floor(Math.random() * 10);
@@ -143,6 +148,10 @@ lever.onclick = () => {
   }, 500);
   movementsHistorical("Gastas una moneda");
   earningsConditions(cardsToGetResult);
+  if (numCoinsElement.innerHTML == 0) {
+    btnInCoins.disabled = false;
+    inputCoins.disabled = false;
+  }
 };
 
 const movementsHistorical = (moves) => {
