@@ -1,4 +1,4 @@
-//Varibles
+//Varibles---------------------------------------
 const listImages = [
   "aubergine",
   "banana",
@@ -13,18 +13,21 @@ const listImages = [
 ];
 
 let lever;
-
 const imgCards = [];
 
-//Referencias HTML
+//-----------------------------------------------
+
+//Referencias de los elementos HTML------------------
 const btnInCoins = document.querySelector(".coinsIn");
 const inputCoins = document.querySelector("#coinsInput");
 const numCoinsElement = document.querySelector(".numCoins");
 const btnExit = document.querySelector(".exitBtn");
 const placeForGame = document.querySelector(".images");
 const placeForMoves = document.querySelector(".containerMoves");
+//------------------------------------------------
 
 //Funciones
+//Funcion inicial que pintara las primeras imagenes del juego con los valores por default de los pinguinos
 const initialGame = () => {
   for (let i = 0; i < 3; i++) {
     const imgCard = document.createElement("img");
@@ -39,24 +42,21 @@ const initialGame = () => {
   placeForGame.append(lever);
 };
 
+//Funcion para suma de las monedas
 const earningsCoin = (coins) => {
   let numCoins = parseInt(numCoinsElement.innerHTML);
-  // let inputNum = parseInt(inputCoins.value);
   numCoins += coins;
-  // inputNum += coins;
   numCoinsElement.innerHTML = numCoins;
-  // inputCoins.value = inputNum;
 };
 
+//Funcion para restar moneda en cada turno
 const turnLeftCoin = () => {
   let numCoins = parseInt(numCoinsElement.innerHTML);
-  // let inputNum = parseInt(inputCoins.value);
   numCoins -= 1;
-  // inputNum -= 1;
   numCoinsElement.innerHTML = numCoins;
-  // inputCoins.value = inputNum;
 };
 
+//Funcion que calcular las condiciones de las recompensas por tiro
 const earningsConditions = (results) => {
   //Si salen 3 monedas, se gana 10 monedas
   if (results.every((val) => val === "dollar")) {
@@ -73,7 +73,6 @@ const earningsConditions = (results) => {
   }
 
   results = results.filter((value, index, arr) => arr.indexOf(value) === index);
-  //si salen 3 frutas o verduras iguales, 5 monedas
   if (results.length === 1 && results[0] !== "dollar") {
     movementsHistorical("!Tres IGUALES¡ Ganas 5 monedas.");
     earningsCoin(5);
@@ -90,9 +89,13 @@ const earningsConditions = (results) => {
     }
   }
 };
-
+//Se inicial la funcion inicial
 initialGame();
-//Eventos
+//-------------------------------------------------------------------------------------------------
+
+
+//Eventos 
+//Evento de introduccion de monedas
 btnInCoins.onclick = () => {
   if (!inputCoins.value || inputCoins.value <= 0) {
     swal("Valor incorrecto", "Debes introducir monedas", "error");
@@ -106,8 +109,8 @@ btnInCoins.onclick = () => {
   }
 };
 
+//Eventos del boton de salir
 btnExit.onclick = () => {
-  debugger;
   const coinsWon = (numCoinsElement.innerHTML);
   swal(
     "Has salido del juego",
@@ -123,6 +126,7 @@ btnExit.onclick = () => {
   movementsHistorical("Sacas todas las monedas.");
 };
 
+//Evento de cuando se tira la palanca
 lever.onclick = () => {
   
   const cardsToGetResult = [];
@@ -137,6 +141,7 @@ lever.onclick = () => {
     turnLeftCoin();
   }
 
+  // Se crea dinamicamente las 3 imagenes aleatorias
   for (let i = 0; i < 3; i++) {
     let num = Math.floor(Math.random() * 10);
     imgCards[i].src = `./assets/img/${listImages[num]}.png`;
@@ -154,9 +159,11 @@ lever.onclick = () => {
   }
 };
 
+//Funcion que pinta cada evento en la lista del historial
 const movementsHistorical = (moves) => {
   const move = document.createElement("li");
   const lastLiAdded = document.getElementsByTagName("li")[0];
   move.innerText = moves;
   placeForMoves.insertBefore(move, lastLiAdded);
 };
+//-----------------------------------------------------------------
